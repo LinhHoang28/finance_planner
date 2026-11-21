@@ -23,7 +23,11 @@ enum TransactionType {
 enum Category {
   FOOD
   TRANSPORT
+  ENTERTAINMENT
+  SHOPPING
+  BILLS
   SALARY
+  INVESTMENT
   OTHER
 }
 
@@ -54,4 +58,5 @@ model WishlistItem {
   name     String
   cost     Int
   priority Priority @default(MEDIUM)
+  createdAt DateTime @default(now())
 }
