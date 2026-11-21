@@ -8,7 +8,6 @@ export default defineConfig({
     seed: 'tsx prisma/seed.ts',
   },
   datasource: {
-    // CLI (migrate, seed, studio) dùng URL trực tiếp
     url: process.env.DATABASE_URL_UNPOOLED,
   },
 });

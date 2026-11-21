@@ -14,7 +14,6 @@ export function startOfMonth(d = new Date()) {
   return new Date(d.getFullYear(), d.getMonth(), 1);
 }
 
-// Hàm thuần: trả về { gte, lt } cho where.date
 export function getDateRange(
   range: Filters["range"],
   now = new Date(),
@@ -22,14 +21,13 @@ export function getDateRange(
   if (range === "all") return undefined;
   const back = range === "last-month" ? 1 : 0;
   const y = now.getFullYear();
-  const m = now.getMonth() - back; // 0 - 1 → tháng 12
+  const m = now.getMonth() - back;
   return {
-    gte: new Date(y, m, 1), // ngày 1 của tháng
-    lt: new Date(y, m + 1, 1), // ngày 1 tháng sau
+    gte: new Date(y, m, 1),
+    lt: new Date(y, m + 1, 1),
   };
 }
 
-// Hàm thuần: không đọc DB, không gọi mạng
 export function wishlistProgress(
   balance: number, cost: number,
 ): number {
@@ -53,7 +51,6 @@ export type BalanceRow = {
   amount: number;
 };
 
-// Hàm thuần tính số dư = tổng INCOME - tổng EXPENSE
 export function calculateBalance(rows: readonly BalanceRow[]): number {
   return rows.reduce(
     (sum, r) => (r.type === "INCOME" ? sum + r.amount : sum - r.amount),
@@ -67,7 +64,6 @@ export type SpendingRow = {
   amount: number;
 };
 
-// Hàm thuần gom tổng chi tiêu (EXPENSE) theo từng category
 export function spendingByCategory(
   rows: readonly SpendingRow[],
 ): Record<string, number> {
